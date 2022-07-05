@@ -1,0 +1,65 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: white;
+  font-family: "Roboto Slab", serif;
+}
+
+.imagenes {
+  height: auto;
+  max-width: 100%;
+}
+
+.juego__vida {
+  font-family: "px sans nouveaux", sans-serif;
+  font-size: 50px;
+  color: #fca311;
+}
+
+.opciones {
+  display: none;
+}
+
+.juego__contenedor {
+  width: 700px;
+  height: 500px;
+  border-style: dashed;
+  border-color: #fca311;
+  background-color: #e5e5e5;
+}
+
+.juego__btn--inicio {
+  background-color: #14213d;
+  border-style: none;
+  color: #fca311;
+  width: 250px;
+  height: 100px;
+  font-size: 20px;
+  font-family: "px sans nouveaux", sans-serif;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.juego__btn--inicio:hover {
+  color: #14213d;
+  background-color: #fca311;
+}
+
+.menu__contenedor {
+  height: 80px;
+  width: 100%;
+}
+
+.btn__menu {
+  background-color: #fca311;
+  border-radius: 10px;
+  font-family: "px sans nouveaux", sans-serif;
+  width: 180px;
+  min-height: 80px;
+  cursor: pointer;
+}
+/*# sourceMappingURL=styles.css.map */

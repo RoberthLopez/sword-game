@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Blade Wars ⚔️</title>
+
+    <link rel="stylesheet" href="/assets/css/styles.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <link href="http://fonts.cdnfonts.com/css/px-sans-nouveaux" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">BladeWars⚔️</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Creador</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+    </header>
+    <main>
+      <section class="container d-flex justify-content-center mt-5">
+        <div class="juego__contenedor position-relative">
+          <div>
+            <div class="juego__vida position-absolute top-0 start-0" id="vida">
+            </div>
+            <div class="juego__vida position-absolute top-0 end-0" id="vidaEnemigo">  
+            </div>
+          </div>
+          <div>
+            <div id="espada">
+  
+            </div>
+            <div id="espadaEnemiga">
+  
+            </div>
+          </div>
+          <div class="menu__contenedor d-flex justify-content-center gap-5" id="menu__jugar">
+            <button class="btn__menu" id="btn__jugar">
+              Volver a Jugar
+            </button>
+            <button class="btn__menu" id="btn__salir">
+              Salir del juego
+            </button>
+            <button class="btn__menu" id="btn__combatlog">
+              Ver el Historial de Combate
+            </button>
+          </div>
+          <div class="position-absolute top-50 start-50 translate-middle">
+            <button class="juego__btn--inicio" id="comenzarJuego">
+              EMPEZAR A JUGAR
+            </button>
+          </div>
+          <div  class="position-absolute top-50 start-50 translate-middle">
+            <select class="opciones"id="elegir__espada">
+              <option> Elige una espada</option>
+              <option value="fuego">Espada de Fuego</option>
+              <option value="agua">Espada de Agua</option>
+              <option value="planta">Espada de Planta</option>
+            </select>
+          </div>
+
+
+        </div>
+
+      </section>
+        
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="./assets/scripts/main.js"></script>
+
+</body>
+</html>
