@@ -17,7 +17,7 @@ body {
 .juego__vida {
   font-family: "px sans nouveaux", sans-serif;
   font-size: 50px;
-  color: #fca311;
+  color: red;
 }
 
 .opciones {
@@ -52,6 +52,7 @@ body {
 .menu__contenedor {
   height: 80px;
   width: 100%;
+  visibility: hidden;
 }
 
 .btn__menu {
@@ -61,5 +62,43 @@ body {
   width: 180px;
   min-height: 80px;
   cursor: pointer;
+}
+
+.mensaje__contenedor {
+  width: 700px;
+  height: 500px;
+  visibility: hidden;
+}
+
+.mensajes {
+  width: 300px;
+  height: 250px;
+  background-color: #14213d;
+  color: white;
+  text-align: center;
+  border-style: dotted;
+  border-color: #fca311;
+  border-radius: 10px;
+}
+
+.mensajes__texto {
+  font-family: "px sans nouveaux", sans-serif;
+  height: auto;
+  width: 200px;
+  text-align: center;
+}
+
+.espadas {
+  width: 700px;
+  height: 500px;
+}
+
+.espada__imagen {
+  width: 300px;
+  height: auto;
+}
+
+.espadaEnemiga {
+  visibility: hidden;
 }
 /*# sourceMappingURL=styles.css.map */

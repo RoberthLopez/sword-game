@@ -48,15 +48,24 @@
             <div class="juego__vida position-absolute top-0 end-0" id="vidaEnemigo">  
             </div>
           </div>
-          <div>
-            <div id="espada">
-  
+
+          <div class="espadas d-flex justify-content-center align-items-center gap-5">
+            <div class="espada" id="espada">
+              <!-- <img class="espada__imagen" src="assets/images/espada-agua.png" alt=""> -->
             </div>
-            <div id="espadaEnemiga">
-  
+            <div class="espadaEnemiga" id="espada__enemiga">
+              <!-- <img class="espada__imagen" src="assets/images/espada-agua-enemigo.png" alt=""> -->
             </div>
           </div>
-          <div class="menu__contenedor d-flex justify-content-center gap-5" id="menu__jugar">
+
+          <div class="d-flex mensaje__contenedor justify-content-center align-items-center ">
+            <div class="mensajes d-flex justify-content-center align-items-center" id="mensajes">
+              <p class="mensajes__texto">
+                Muchas gracias por jugar con nosotros
+              </p>
+            </div>
+          </div>
+          <div class="menu__contenedor position-absolute bottom-0 start-50 translate-middle-x gap-5 d-flex justify-content-center" id="menu__jugar">
             <button class="btn__menu" id="btn__jugar">
               Volver a Jugar
             </button>
