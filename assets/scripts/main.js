@@ -35,17 +35,32 @@ let selectEspada = document.getElementById("elegir__espada")
 
 // Historial ganadas y perdidas
 
-let storageGanadas = parseInt(localStorage.getItem("cantidadGanada"));
-let storagePerdidas = parseInt(localStorage.getItem("cantidadPerdida"));
+let storageGanadas;
+let storagePerdidas;
 
 if (localStorage.getItem("cantidadGanada")) {
+    storageGanadas = parseInt(localStorage.getItem("cantidadGanada"));
+
     vecesGanadas.innerText = localStorage.getItem("cantidadGanada")
     localStorage.setItem("cantidadGanada", storageGanadas++)
+}else {
+    storageGanadas = 1;
+    localStorage.setItem("cantidadGanada", 0)
+    vecesGanadas.innerText = localStorage.getItem("cantidadGanada")
 }
+
 if (localStorage.getItem("cantidadPerdida")) {
+    storagePerdidas = parseInt(localStorage.getItem("cantidadPerdida"));
+
     vecesPerdidas.innerText = localStorage.getItem("cantidadPerdida")
     localStorage.setItem("cantidadPerdida", storagePerdidas++)
+}else {
+    storagePerdidas = 1;
+    localStorage.setItem("cantidadPerdida", 0)
+    vecesPerdidas.innerText = localStorage.getItem("cantidadPerdida")
 }
+
+
 
 const contador = () => {
 
