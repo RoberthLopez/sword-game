@@ -1,7 +1,6 @@
 class Espada {
-    constructor (nombre, vida, ventaja, img) {
+    constructor (nombre, ventaja, img) {
         this.nombre = nombre;
-        this.vida = vida;
         this.ventaja = ventaja;
         this.img = img;
         this.daño = () => {
@@ -21,17 +20,65 @@ let btnCombatlog = document.getElementById("btn__combatlog")
 let mensajes = document.getElementById("mensajes")
 let espadaImg = document.getElementById("espada")
 let espadaEnemigaImg = document.getElementById("espada__enemiga")
+let espadaElegida;
+let ganaste = document.getElementById("ganaste")
+let perdiste = document.getElementById("perdiste")
+let espadaAElegir = document.querySelectorAll(".espada__imagen--2")
+let vecesGanadas = document.getElementById("vecesGanadas")
+let vecesPerdidas = document.getElementById("vecesPerdidas")
 
+
+
+// Crear espada de usuario
+let comenzarJuego = document.getElementById("comenzarJuego")
+let selectEspada = document.getElementById("elegir__espada")
+
+// Historial ganadas y perdidas
+
+let storageGanadas = parseInt(localStorage.getItem("cantidadGanada"));
+let storagePerdidas = parseInt(localStorage.getItem("cantidadPerdida"));
+
+if (localStorage.getItem("cantidadGanada")) {
+    vecesGanadas.innerText = localStorage.getItem("cantidadGanada")
+    localStorage.setItem("cantidadGanada", storageGanadas++)
+}
+if (localStorage.getItem("cantidadPerdida")) {
+    vecesPerdidas.innerText = localStorage.getItem("cantidadPerdida")
+    localStorage.setItem("cantidadPerdida", storagePerdidas++)
+}
+
+const contador = () => {
+
+
+    let newStorageGanadas = ganadas + storageGanadas;
+    let newStoragePerdidas = perdidas + storagePerdidas;
+
+    localStorage.setItem("cantidadGanada", newStorageGanadas)
+    localStorage.setItem("cantidadPerdida", newStoragePerdidas)
+
+    vecesGanadas.innerText = localStorage.getItem("cantidadGanada");
+    vecesPerdidas.innerText = localStorage.getItem("cantidadPerdida");
+
+}
+
+// funcion para obtener nombre de la espada elegida
+const obtener = (e) => {
+    espadaElegida = e.target.getAttribute("id")
+    elegirEspada(espadaElegida)
+}  
+ 
+
+//
 // Cree 2 objetos para la misma cosa porque cuando aletoriamente salia el mismo objeto para usuario y enemigo se hacian exactamente el mismo daño
 // Tipos de espada Usuario
-const espadaFuego = new Espada ("fuego", 100, "planta", "espada-fuego.png");
-const espadaAgua = new Espada("agua", 100,"fuego", "espada-agua.png");
-const espadaPlanta = new Espada ("planta", 100, "agua", "espada-planta.png");
+const espadaFuego = new Espada ("fuego", "planta", "espada-fuego.png");
+const espadaAgua = new Espada("agua", "fuego", "espada-agua.png");
+const espadaPlanta = new Espada ("planta", "agua", "espada-planta.png");
 
 // Tipos de espada Enemigo
-const espadaFuegoEnemigo = new Espada ("fuego", 100, "planta", "espada-fuego-enemigo.png");
-const espadaAguaEnemigo = new Espada("agua", 100,"fuego", "espada-agua-enemigo.png");
-const espadaPlantaEnemigo = new Espada ("planta", 100, "agua", "espada-planta-enemigo.png");
+const espadaFuegoEnemigo = new Espada ("fuego", "planta", "espada-fuego-enemigo.png");
+const espadaAguaEnemigo = new Espada("agua", "fuego", "espada-agua-enemigo.png");
+const espadaPlantaEnemigo = new Espada ("planta", "agua", "espada-planta-enemigo.png");
 
 // Generador de enemigo Random
 const generarEnemigo = () => {
@@ -60,57 +107,68 @@ let espadaUsuario;
 //Historial de daño
 let combatLog;
 
-// Historial ganadas y perdidas
-let ganadas = 0;
-let perdidas = 0;
 
-// Crear espada de usuario
-let comenzarJuego = document.getElementById("comenzarJuego")
-let selectEspada = document.getElementById("elegir__espada")
+
 
 const empezarJuego = () => {
+    vidaUsuario = 100;
+    vidaEnemiga = 100;
+    espadaImg.innerHTML = "";
+    espadaElegida = "";
+    perdiste.style.visibility = "hidden";
+    ganaste.style.visibility = "hidden";
     combatLog = [];
     espadaUsuario = "";
     espadaEnemiga = generarEnemigo();
-    vidaUsuario = 100;
-    vidaEnemiga = 100;
     comenzarJuego.style.display = "none";
-    selectEspada.style.display = "block";
-    selectEspada.onchange = elegirEspada;
-    peleaIntervalo = setInterval(pelea, 1000);   
+    selectEspada.style.visibility = "visible";
+    espadaAElegir.forEach((e) => {
+        e.addEventListener("click", obtener)
+    });
 }
 
-function elegirEspada () {
-    let espadaElegida = selectEspada.value;
-    selectEspada.style.display = "none";
-    console.log(selectEspada.value)
+function elegirEspada (espadaElegida) {
+    selectEspada.style.visibility = "hidden";
+    console.log(espadaElegida)
 
     switch (espadaElegida) {
         case "fuego":
+            vidaUsuarioId.innerText = 100;
+            vidaEnemigoId.innerText = 100;
+            vidaUsuarioId.style.visibility = "visible";
+            vidaEnemigoId.style.visibility = "visible";
             espadaImg.innerHTML = `<img class="espada__imagen" src="assets/images/${espadaFuego.img}" alt="">`;
+            espadaImg.style.visibility = "visible";
             espadaEnemigaImg.style.visibility = "visible";
             espadaUsuario = espadaFuego;
-            pelea ();
+            peleaIntervalo = setInterval(pelea, 1000);
             break;
         case "agua":
+            vidaUsuarioId.innerText = 100;
+            vidaEnemigoId.innerText = 100;
+            vidaUsuarioId.style.visibility = "visible";
+            vidaEnemigoId.style.visibility = "visible";
             espadaImg.innerHTML = `<img class="espada__imagen" src="assets/images/${espadaAgua.img}" alt="">`;
+            espadaImg.style.visibility = "visible";
             espadaEnemigaImg.style.visibility = "visible";
             espadaUsuario = espadaAgua;
-            pelea();
+            peleaIntervalo = setInterval(pelea, 1000);
             break;
         case "planta":
+            vidaUsuarioId.innerText = 100;
+            vidaEnemigoId.innerText = 100;
+            vidaUsuarioId.style.visibility = "visible";
+            vidaEnemigoId.style.visibility = "visible";
             espadaImg.innerHTML = `<img class="espada__imagen" src="assets/images/${espadaPlanta.img}" alt="">`;
+            espadaImg.style.visibility = "visible";
             espadaEnemigaImg.style.visibility = "visible";
             espadaUsuario = espadaPlanta;
-            pelea();
+            peleaIntervalo = setInterval(pelea, 1000);
             break;
-        default:
-            alert("Elige entre fuego, agua o planta");
-            crearEspadaUsuario();
-            break;
-
     }
 }
+
+
 
 
 // Calcular el daño segun la ventaja del usuario
@@ -140,27 +198,20 @@ const calcularDañoEnemigo = () => {
 }
 
 //Funcion para volver a jugar
-btnJugar.addEventListener("click", () => {
-    empezarJuego()
-    menuJugar.style.visibility = "hidden";
-}
-)
+
 
 const volverAJugar = () => {
-    // let preguntaJugar = prompt(` Has ganado ${ganadas} veces y perdido ${perdidas} veces.\n¿Quieres volver a jugar? \nIngresa 1 para volver a jugar. \nIngresa 2 para salir.`)
-    
+    btnJugar.addEventListener("click", () => {
+        vidaUsuarioId.style.visibility = "hidden";
+        vidaEnemigoId.style.visibility = "hidden";
+        espadaImg.innerHTML = ""
+        menuJugar.style.visibility = "hidden";
+        selectEspada.style.visibility = "visible";
+
+        empezarJuego()
+    })
+
     btnSalir.addEventListener("click", dejarDeJugar)
-    // switch (preguntaJugar) {
-    //     case "1":
-    //         empezarJuego();
-    //         break;
-    //     case "2":
-    //         break;
-    //     default:
-    //         alert("Ingresa 1 ó 2");
-    //         volverAJugar();
-    //         break;
-    // }
 }
 
 // Funcion para dejar de jugar
@@ -169,46 +220,49 @@ const dejarDeJugar = () => {
 
 }
                         
+// Ganador
 
-//Pelea de las espadas
 const ganaUsuario = () => {
     menuJugar.style.visibility = "visible"
-
-    return alert("Felicidades Has Ganado la Batalla!"),
-    ganadas++,
-    console.log(espadaEnemiga.nombre + " Enemigo"),
-    console.log(espadaUsuario.nombre + " Usuario"),
-    alert(combatLog.join("\n")),
-    volverAJugar();         
+    volverAJugar()
+    return localStorage.setItem("cantidadGanada", storageGanadas++),
+    vecesGanadas.innerText = localStorage.getItem("cantidadGanada");
+         
 }
 const ganaEnemigo = () => {
     menuJugar.style.visibility = "visible"
+    volverAJugar()
+    return localStorage.setItem("cantidadPerdida", storagePerdidas++),
+    vecesPerdidas.innerText = localStorage.getItem("cantidadPerdida");
 
-    return alert("Has luchado con honor pero has perdido la batalla"),
-    perdidas++,
-    console.log(espadaEnemiga.nombre + " Enemigo"),
-    console.log(espadaUsuario.nombre + " Usuario"),
-    alert(combatLog.join("\n")),
-    volverAJugar();
+
 }
 
+//Pelea de las espadas
 
 const pelea = () => {
     
-    vidaUsuario = espadaUsuario.vida -= calcularDañoEnemigo();
-    vidaEnemiga = espadaEnemiga.vida -= calcularDañoUsuario();
+    vidaUsuario = vidaUsuario -= calcularDañoEnemigo();
+    vidaEnemiga = vidaEnemiga -= calcularDañoUsuario();
     vidaUsuarioId.innerText = vidaUsuario;
     vidaEnemigoId.innerText = vidaEnemiga;
 
     if (vidaUsuario <= 0) {
-        clearInterval(peleaIntervalo);
+        
+        espadaEnemigaImg.style.visibility = "hidden";
+        espadaImg.style.visibility = "hidden";
+        perdiste.style.visibility = "visible"
         ganaEnemigo();
+        clearInterval(peleaIntervalo);
     }
     else if (vidaEnemiga <= 0) {
-        clearInterval(peleaIntervalo);
+        
+        espadaEnemigaImg.style.visibility = "hidden";
+        espadaImg.style.visibility = "hidden";
+        ganaste.style.visibility = "visible";
         ganaUsuario();
+        clearInterval(peleaIntervalo);
     }
-    // combatLog.push(`Recibes ${calcularDañoEnemigo()} de daño y haces ${calcularDañoUsuario()} de daño. Tienes ${vidaUsuario} puntos de vida y tu enemigo ${vidaEnemiga}`);
 }
 
 comenzarJuego.addEventListener("click", empezarJuego)

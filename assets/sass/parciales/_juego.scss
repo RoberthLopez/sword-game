@@ -75,6 +75,40 @@
     width: 300px;
     height: auto;
 }
+.espada__imagen--2 {
+    width: 220px;
+    height: auto;
+    cursor: pointer;
+}
 .espadaEnemiga {
     visibility: hidden;
+}
+.elegir__espadas {
+    width: 700px;
+    visibility: hidden;
+
+}
+.elegir__espadas--texto {
+    font-family: $font__family--2;
+    font-size: 30px;
+    font-weight: 800;
+    color: $color__1;
+}
+
+.ganaste__perdiste {
+    visibility: hidden;
+    font-family: $font__family--2;
+    font-size: 30px; 
+    color: $color__2; 
+    text-align: center;
+}
+
+.historial__titulo {
+    margin: 50px;
+}
+.historial__ganadas {
+    color: green
+}
+.historial__perdidas {
+    color: red
 }

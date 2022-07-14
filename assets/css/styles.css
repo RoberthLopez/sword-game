@@ -98,7 +98,45 @@ body {
   height: auto;
 }
 
+.espada__imagen--2 {
+  width: 220px;
+  height: auto;
+  cursor: pointer;
+}
+
 .espadaEnemiga {
   visibility: hidden;
+}
+
+.elegir__espadas {
+  width: 700px;
+  visibility: hidden;
+}
+
+.elegir__espadas--texto {
+  font-family: "px sans nouveaux", sans-serif;
+  font-size: 30px;
+  font-weight: 800;
+  color: #fca311;
+}
+
+.ganaste__perdiste {
+  visibility: hidden;
+  font-family: "px sans nouveaux", sans-serif;
+  font-size: 30px;
+  color: #14213d;
+  text-align: center;
+}
+
+.historial__titulo {
+  margin: 50px;
+}
+
+.historial__ganadas {
+  color: green;
+}
+
+.historial__perdidas {
+  color: red;
 }
 /*# sourceMappingURL=styles.css.map */
