@@ -35,30 +35,38 @@ let selectEspada = document.getElementById("elegir__espada")
 
 // Historial ganadas y perdidas
 
-let storageGanadas;
-let storagePerdidas;
+let storageGanadas = parseInt(localStorage.getItem("cantidadGanada")) || 0;
+localStorage.setItem("cantidadGanada", storageGanadas++);
+vecesGanadas.innerText = localStorage.getItem("cantidadGanada");
 
-if (localStorage.getItem("cantidadGanada")) {
-    storageGanadas = parseInt(localStorage.getItem("cantidadGanada"));
+let storagePerdidas = parseInt(localStorage.getItem("cantidadPerdida")) || 0;
+localStorage.setItem("cantidadPerdida", storagePerdidas++);
+vecesPerdidas.innerText = localStorage.getItem("cantidadPerdida");
 
-    vecesGanadas.innerText = localStorage.getItem("cantidadGanada")
-    localStorage.setItem("cantidadGanada", storageGanadas++)
-}else {
-    storageGanadas = 1;
-    localStorage.setItem("cantidadGanada", 0)
-    vecesGanadas.innerText = localStorage.getItem("cantidadGanada")
-}
+// let storageGanadas;
+// let storagePerdidas;
 
-if (localStorage.getItem("cantidadPerdida")) {
-    storagePerdidas = parseInt(localStorage.getItem("cantidadPerdida"));
+// if (localStorage.getItem("cantidadGanada")) {
+//     storageGanadas = parseInt(localStorage.getItem("cantidadGanada"));
 
-    vecesPerdidas.innerText = localStorage.getItem("cantidadPerdida")
-    localStorage.setItem("cantidadPerdida", storagePerdidas++)
-}else {
-    storagePerdidas = 1;
-    localStorage.setItem("cantidadPerdida", 0)
-    vecesPerdidas.innerText = localStorage.getItem("cantidadPerdida")
-}
+//     vecesGanadas.innerText = localStorage.getItem("cantidadGanada")
+//     localStorage.setItem("cantidadGanada", storageGanadas++)
+// }else {
+//     storageGanadas = 1;
+//     localStorage.setItem("cantidadGanada", 0)
+//     vecesGanadas.innerText = localStorage.getItem("cantidadGanada")
+// }
+
+// if (localStorage.getItem("cantidadPerdida")) {
+//     storagePerdidas = parseInt(localStorage.getItem("cantidadPerdida"));
+
+//     vecesPerdidas.innerText = localStorage.getItem("cantidadPerdida")
+//     localStorage.setItem("cantidadPerdida", storagePerdidas++)
+// }else {
+//     storagePerdidas = 1;
+//     localStorage.setItem("cantidadPerdida", 0)
+//     vecesPerdidas.innerText = localStorage.getItem("cantidadPerdida")
+// }
 
 
 
@@ -94,6 +102,13 @@ const espadaPlanta = new Espada ("planta", "agua", "espada-planta.png");
 const espadaFuegoEnemigo = new Espada ("fuego", "planta", "espada-fuego-enemigo.png");
 const espadaAguaEnemigo = new Espada("agua", "fuego", "espada-agua-enemigo.png");
 const espadaPlantaEnemigo = new Espada ("planta", "agua", "espada-planta-enemigo.png");
+
+// Desestructurando 1 solo objeto
+const {
+    nombre: fuego,
+    ventaja: fuegoPlanta,
+    img: fuegoImagen
+} = espadaFuego
 
 // Generador de enemigo Random
 const generarEnemigo = () => {
@@ -152,7 +167,7 @@ function elegirEspada (espadaElegida) {
             vidaEnemigoId.innerText = 100;
             vidaUsuarioId.style.visibility = "visible";
             vidaEnemigoId.style.visibility = "visible";
-            espadaImg.innerHTML = `<img class="espada__imagen" src="assets/images/${espadaFuego.img}" alt="">`;
+            espadaImg.innerHTML = `<img class="espada__imagen" src="assets/images/${fuegoImagen}" alt="">`;
             espadaImg.style.visibility = "visible";
             espadaEnemigaImg.style.visibility = "visible";
             espadaUsuario = espadaFuego;
