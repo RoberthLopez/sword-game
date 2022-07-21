@@ -16,7 +16,7 @@ let vidaEnemiga;
 let menuJugar = document.getElementById("menu__jugar")
 let btnJugar = document.getElementById("btn__jugar")
 let btnSalir = document.getElementById("btn__salir")
-let btnCombatlog = document.getElementById("btn__combatlog")
+let btnCombatLog = document.getElementById("btn__combatlog")
 let mensajes = document.getElementById("mensajes")
 let espadaImg = document.getElementById("espada")
 let espadaEnemigaImg = document.getElementById("espada__enemiga")
@@ -135,7 +135,7 @@ let espadaEnemiga = generarEnemigo();
 let espadaUsuario;
 
 //Historial de daño
-let combatLog;
+let combatLog = [];
 
 
 
@@ -243,6 +243,18 @@ const volverAJugar = () => {
 
     btnSalir.addEventListener("click", dejarDeJugar)
 }
+// let showCombatLog = combatLog.forEach(e => )
+// Funcion para ver el combat log
+const verCombatLog = () => {
+    btnCombatLog.addEventListener("click", () => {
+        
+        Swal.fire({
+            title: "Historial de Combate",
+            html: combatLog.join("\n"),
+            background: "#fca311"
+        })
+    })
+}
 
 // Funcion para dejar de jugar
 
@@ -255,6 +267,7 @@ const dejarDeJugar = () => {
 const ganaUsuario = () => {
     menuJugar.style.visibility = "visible"
     volverAJugar()
+    verCombatLog()
     return localStorage.setItem("cantidadGanada", storageGanadas++),
     vecesGanadas.innerText = localStorage.getItem("cantidadGanada");
          
@@ -262,6 +275,7 @@ const ganaUsuario = () => {
 const ganaEnemigo = () => {
     menuJugar.style.visibility = "visible"
     volverAJugar()
+    verCombatLog()
     return localStorage.setItem("cantidadPerdida", storagePerdidas++),
     vecesPerdidas.innerText = localStorage.getItem("cantidadPerdida");
 
@@ -276,6 +290,7 @@ const pelea = () => {
     vidaEnemiga = vidaEnemiga -= calcularDañoUsuario();
     vidaUsuarioId.innerText = vidaUsuario;
     vidaEnemigoId.innerText = vidaEnemiga;
+    combatLog.push(`Recibes ${calcularDañoEnemigo()} y haces ${calcularDañoUsuario()} de daño. Tienes ${vidaUsuario} puntos de vida y tu enemigo ${vidaEnemiga} <br>`);
 
     if (vidaUsuario <= 0) {
         
