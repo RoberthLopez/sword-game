@@ -1,0 +1,7 @@
+[{"nombre": "fuego", "ventaja": "planta", "img": "espada-fuego.png"},
+{"nombre": "agua", "ventaja": "fuego", "img": "espada-agua.png"},
+{"nombre": "planta", "ventaja": "agua", "img": "espada-planta.png"},
+{"nombre": "fuego", "ventaja": "planta", "img": "espada-fuego-enemigo.png"},
+{"nombre": "agua", "ventaja": "fuego", "img": "espada-agua-enemigo.png"},
+{"nombre": "planta", "ventaja": "agua", "img": "espada-planta-enemigo.png"}]
+    

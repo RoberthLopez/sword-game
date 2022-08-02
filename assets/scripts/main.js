@@ -1,13 +1,14 @@
-class Espada {
-    constructor (nombre, ventaja, img) {
-        this.nombre = nombre;
-        this.ventaja = ventaja;
-        this.img = img;
-        this.daño = () => {
-            return Math.floor(Math.random() * 16)
-        };
-    }
-}
+// class Espada {
+//     constructor (nombre, ventaja, img) {
+//         this.nombre = nombre;
+//         this.ventaja = ventaja;
+//         this.img = img;
+//         this.daño = () => {
+//             return Math.floor(Math.random() * 16)
+//         };
+//     }
+// }
+
 let peleaIntervalo;
 let vidaUsuarioId = document.getElementById("vida")
 let vidaEnemigoId = document.getElementById("vidaEnemigo")
@@ -68,7 +69,12 @@ vecesPerdidas.innerText = localStorage.getItem("cantidadPerdida");
 //     vecesPerdidas.innerText = localStorage.getItem("cantidadPerdida")
 // }
 
-
+const daño = () => {
+    return Math.floor(Math.random() * 16)
+}
+const dañoEnemigo = () => {
+    return Math.floor(Math.random() * 16)
+}
 
 const contador = () => {
 
@@ -94,21 +100,50 @@ const obtener = (e) => {
 //
 // Cree 2 objetos para la misma cosa porque cuando aletoriamente salia el mismo objeto para usuario y enemigo se hacian exactamente el mismo daño
 // Tipos de espada Usuario
-const espadaFuego = new Espada ("fuego", "planta", "espada-fuego.png");
-const espadaAgua = new Espada("agua", "fuego", "espada-agua.png");
-const espadaPlanta = new Espada ("planta", "agua", "espada-planta.png");
+// const espadaFuego = new Espada ("fuego", "planta", "espada-fuego.png");
+// const espadaAgua = new Espada("agua", "fuego", "espada-agua.png");
+// const espadaPlanta = new Espada ("planta", "agua", "espada-planta.png");
+
+let espadaFuego;
+let espadaAgua;
+let espadaPlanta;
 
 // Tipos de espada Enemigo
-const espadaFuegoEnemigo = new Espada ("fuego", "planta", "espada-fuego-enemigo.png");
-const espadaAguaEnemigo = new Espada("agua", "fuego", "espada-agua-enemigo.png");
-const espadaPlantaEnemigo = new Espada ("planta", "agua", "espada-planta-enemigo.png");
+// const espadaFuegoEnemigo = new Espada ("fuego", "planta", "espada-fuego-enemigo.png");
+// const espadaAguaEnemigo = new Espada("agua", "fuego", "espada-agua-enemigo.png");
+// const espadaPlantaEnemigo = new Espada ("planta", "agua", "espada-planta-enemigo.png");
+
+let espadaFuegoEnemigo;
+let espadaAguaEnemigo;
+let espadaPlantaEnemigo;
+
+const asignar = (espaditas) => {
+    espadaFuego = espaditas[0];
+    espadaAgua = espaditas[1];
+    espadaPlanta = espaditas[2];
+
+    espadaFuegoEnemigo = espaditas[3];
+    espadaAguaEnemigo = espaditas[4];
+    espadaPlantaEnemigo = espaditas[5];
+} 
+
+const traerDeJSON = () => {
+    const respuesta = fetch("./assets/json/archivo.json")
+    respuesta
+    .then(res => res.json())
+    .then((res) => {
+        asignar(res)
+    })    
+}
+traerDeJSON();
+
 
 // Desestructurando 1 solo objeto
-const {
-    nombre: fuego,
-    ventaja: fuegoPlanta,
-    img: fuegoImagen
-} = espadaFuego
+// const {
+//     nombre: fuego,
+//     ventaja: fuegoPlanta,
+//     img: fuegoImagen
+// } = espadaFuego
 
 // Generador de enemigo Random
 const generarEnemigo = () => {
@@ -123,7 +158,7 @@ const generarEnemigo = () => {
         return espadaAguaEnemigo;
 
     }
-    else {
+    else if (espadaRandom == 2) {
         espadaEnemigaImg.innerHTML = `<img class="espada__imagen" src="assets/images/${espadaPlantaEnemigo.img}" alt="">`;
         return espadaPlantaEnemigo;
     }
@@ -131,7 +166,7 @@ const generarEnemigo = () => {
 
 // let elegirEspada;
 
-let espadaEnemiga = generarEnemigo();
+let espadaEnemiga;
 let espadaUsuario;
 
 //Historial de daño
@@ -159,7 +194,6 @@ const empezarJuego = () => {
 
 function elegirEspada (espadaElegida) {
     selectEspada.style.visibility = "hidden";
-    console.log(espadaElegida)
 
     switch (espadaElegida) {
         case "fuego":
@@ -167,7 +201,7 @@ function elegirEspada (espadaElegida) {
             vidaEnemigoId.innerText = 100;
             vidaUsuarioId.style.visibility = "visible";
             vidaEnemigoId.style.visibility = "visible";
-            espadaImg.innerHTML = `<img class="espada__imagen" src="assets/images/${fuegoImagen}" alt="">`;
+            espadaImg.innerHTML = `<img class="espada__imagen" src="assets/images/${espadaFuego.img}" alt="">`;
             espadaImg.style.visibility = "visible";
             espadaEnemigaImg.style.visibility = "visible";
             espadaUsuario = espadaFuego;
@@ -204,26 +238,26 @@ function elegirEspada (espadaElegida) {
 // Calcular el daño segun la ventaja del usuario
 const calcularDañoUsuario = () => {
     if (espadaUsuario.ventaja == espadaEnemiga.nombre) {
-        return Math.round(espadaUsuario.daño() * 1.2);
+        return Math.round(daño() * 1.2);
     }
     else if (espadaEnemiga.ventaja == espadaUsuario.nombre) {
-        return Math.round(espadaUsuario.daño() * 0.9);
+        return Math.round(daño() * 0.9);
     }
     else if (espadaUsuario.ventaja != espadaEnemiga.nombre){
-        return espadaUsuario.daño();
+        return daño();
     }
 }
 
 //Calcular daño segun ventaja enemiga
 const calcularDañoEnemigo = () => {
     if (espadaEnemiga.ventaja == espadaUsuario.nombre) {
-        return Math.round(espadaEnemiga.daño() * 1.2);
+        return Math.round(dañoEnemigo() * 1.2);
     }
     else if (espadaUsuario.ventaja == espadaEnemiga.nombre) {
-        return Math.round(espadaEnemiga.daño() * 0.9);
+        return Math.round(dañoEnemigo() * 0.9);
     }
     else if (espadaUsuario.ventaja != espadaEnemiga.nombre) {
-        return espadaEnemiga.daño();
+        return dañoEnemigo();
     }
 }
 
@@ -278,8 +312,6 @@ const ganaEnemigo = () => {
     verCombatLog()
     return localStorage.setItem("cantidadPerdida", storagePerdidas++),
     vecesPerdidas.innerText = localStorage.getItem("cantidadPerdida");
-
-
 }
 
 //Pelea de las espadas
