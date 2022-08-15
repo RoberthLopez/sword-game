@@ -12,8 +12,17 @@
     width: 700px;
     height: 500px;
     border-style: dashed;
-    border-color: $color__1;
-    background-color: $color__4;
+    background-image: url(../images/fondo-1.jpg);
+    background-size: cover;
+}   
+.juego__contenedor--2 {
+    background-image: url(../images/fondo-2.jpg);
+}
+.juego__contenedor--muerte {
+    background-image: url(../images/fondo-muerte.jpg);
+}
+.juego__contenedor--vida {
+    background-image: url(../images/fondo-victoria.webp);
 }
 
 .juego__btn--inicio {
@@ -99,7 +108,7 @@
     visibility: hidden;
     font-family: $font__family--2;
     font-size: 30px; 
-    color: $color__2; 
+    color: $color__1; 
     text-align: center;
 }
 
@@ -112,3 +121,23 @@
 .historial__perdidas {
     color: red
 }
+
+.vida__animada {
+    color: $color__1;
+    font-family: $font__family--2;
+    font-size: 50px;
+    z-index: 500;
+}
+.vida__animada--1 {
+position: absolute;
+top:200px;
+left: 200px;
+}
+.vida__animada--2 {
+    position:absolute;
+    right: 200px;
+    top: 200px;
+
+}
+
+
