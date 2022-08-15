@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: 'px sans nouveaux';
+  src: url(../fonts/px_sans_nouveaux.ttf);
+}
+
 body {
   background-color: white;
   font-family: "Roboto Slab", serif;
