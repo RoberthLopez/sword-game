@@ -6,7 +6,7 @@
 
 @font-face {
   font-family: 'px sans nouveaux';
-  src: url(./fonts/px_sans_nouveaux.ttf);
+  src: url(../fonts/px_sans_nouveaux.ttf);
 }
 
 body {
